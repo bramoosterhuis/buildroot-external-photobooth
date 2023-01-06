@@ -1,0 +1,6 @@
+source "$BR2_EXTERNAL_PHOTOBOOTH_PATH/package/gphoto2/Config.in"
+source "$BR2_EXTERNAL_PHOTOBOOTH_PATH/package/perl-libimage-exiftool/Config.in"
+source "$BR2_EXTERNAL_PHOTOBOOTH_PATH/package/photobooth/Config.in"
+source "$BR2_EXTERNAL_PHOTOBOOTH_PATH/package/python-gphoto2/Config.in"
+source "$BR2_EXTERNAL_PHOTOBOOTH_PATH/package/libsoup3/Config.in"
+source "$BR2_EXTERNAL_PHOTOBOOTH_PATH/package/wpewebkit-extra/Config.in"

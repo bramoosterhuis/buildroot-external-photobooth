@@ -1,0 +1,25 @@
+From e8e699612ab3cdf71db221fe0fb22acfd31df637 Mon Sep 17 00:00:00 2001
+From: Bram Oosterhuis <bram.oosterhuis.nl@gmail.com>
+Date: Mon, 2 Jan 2023 17:15:55 +0100
+Subject: [PATCH] fix libpas inline error
+
+---
+ Source/bmalloc/libpas/src/libpas/pas_generic_large_free_heap.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Source/bmalloc/libpas/src/libpas/pas_generic_large_free_heap.h b/Source/bmalloc/libpas/src/libpas/pas_generic_large_free_heap.h
+index c7ed3723..12a336e6 100644
+--- a/Source/bmalloc/libpas/src/libpas/pas_generic_large_free_heap.h
++++ b/Source/bmalloc/libpas/src/libpas/pas_generic_large_free_heap.h
+@@ -136,7 +136,7 @@ typedef struct {
+     pas_large_allocation_result best;
+ } pas_generic_large_free_heap_try_allocate_test_allocation_candidate_data;
+ 
+-static PAS_ALWAYS_INLINE bool
++static bool
+ pas_generic_large_free_heap_try_allocate_test_allocation_candidate(
+     pas_generic_large_free_cursor* cursor,
+     pas_large_free candidate,
+-- 
+2.34.1
+

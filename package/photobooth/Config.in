@@ -1,0 +1,37 @@
+#TODO add 
+
+config BR2_PACKAGE_PHOTOBOOTH
+    bool "photobooth"
+    depends on BR2_ENABLE_LOCALE
+    select BR2_PACKAGE_APACHE
+    select BR2_PACKAGE_CUPS
+    select BR2_PACKAGE_EXIFTOOL
+    select BR2_PACKAGE_GD
+    select BR2_PACKAGE_GPHOTO2
+    select BR2_PACKAGE_FFMPEG
+    select BR2_PACKAGE_FFMPEG_GPL
+    select BR2_PACKAGE_PHP
+    select BR2_PACKAGE_PHP_SAPI_APACHE
+    select BR2_PACKAGE_PHP_SAPI_FPM
+    select BR2_PACKAGE_PHP_SAPI_CLI
+    select BR2_PACKAGE_PHP_SAPI_CGI
+    select BR2_PACKAGE_PHP_EXT_ZIP
+    select BR2_PACKAGE_PHP_EXT_GD
+    select BR2_PACKAGE_PYTHON3
+    select BR2_PACKAGE_PYTHON_GPHOTO2
+    select BR2_PACKAGE_LOCKDEV
+    select BR2_PACKAGE_LIBEXIF
+    select BR2_PACKAGE_LIBCURL
+    select BR2_PACKAGE_LIBGPHOTO2
+    select BR2_PACKAGE_RSYNC
+    select BR2_PACKAGE_UDISKS
+    select BR2_PACKAGE_UDISKS_FHS_MEDIA
+    select BR2_PACKAGE_X264
+    help
+        OpenSource Photobooth Webinterface 
+
+        https://photoboothproject.github.io/
+        
+comment "photobooth needs a toolchain w/ wchar and locale enabled"
+	depends on !BR2_ENABLE_LOCALE
+

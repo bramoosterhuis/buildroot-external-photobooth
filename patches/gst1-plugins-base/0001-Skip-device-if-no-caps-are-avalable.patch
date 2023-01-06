@@ -1,0 +1,30 @@
+From fb16abbfaa2461db20f6eac8196654c59ab35812 Mon Sep 17 00:00:00 2001
+From: Bram Oosterhuis <bram.oosterhuis.nl@gmail.com>
+Date: Fri, 6 Jan 2023 15:32:52 +0100
+Subject: [PATCH] Skip device if no caps are avalable
+
+---
+ ext/alsa/gstalsadeviceprovider.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/ext/alsa/gstalsadeviceprovider.c b/ext/alsa/gstalsadeviceprovider.c
+index 19f6ee3..6ad10ec 100644
+--- a/ext/alsa/gstalsadeviceprovider.c
++++ b/ext/alsa/gstalsadeviceprovider.c
+@@ -66,6 +66,13 @@ add_device (GstDeviceProvider * provider, snd_ctl_t * info,
+       device_name, handle, template);
+   gst_caps_unref (template);
+ 
++  if(caps == NULL)
++  { 
++    g_free (device_name);
++    snd_pcm_close (handle);
++    return NULL;
++  }
++
+   snd_card_get_name (card, &card_name);
+   props = gst_structure_new ("alsa-proplist",
+       "device.api", G_TYPE_STRING, "alsa",
+-- 
+2.34.1
+

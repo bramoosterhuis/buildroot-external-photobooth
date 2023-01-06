@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css" media="screen">
+    html,
+    body {
+        height: 100%;
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .logger {
+        border: 0px;
+        width: 100%;
+        height: 100%;
+        -mox-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+</style>
+
+<body>
+    <textarea class='logger' id='log' style="padding:10px"></textarea>
+</body>
+
+<script>
+    'use strict';
+
+    const UserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+    const constraints = {
+        audio: false,
+        video: true
+    };
+
+    console.log = function (message) {
+        document.getElementById("log").value += message + '\n';
+    };
+    console.log('Starting GUM test');
+
+    function hasGetUserMedia() {
+        return !!navigator.getUserMedia;
+    }
+
+    if (hasGetUserMedia()) {
+        console.log('hasGetUserMedia available');
+    } else {
+        console.log('getUserMedia() is not supported in your browser');
+    }
+
+    console.log('getUserMedia');
+
+    function handleError(error) {
+        console.log('navigator.MediaDevices error: ' + error.name + ' ' + error.message);
+    }
+
+    function gotDevices(deviceInfos) {
+        for (let i = 0; i !== deviceInfos.length; ++i) {
+            const deviceInfo = deviceInfos[i];
+            console.log('found ' + deviceInfo + ' kind: "' + deviceInfo.kind + ' label: "' + deviceInfo.label + '", deviceId: "' + deviceInfo.deviceId + '", groupId: "' + deviceInfo.groupId + '"');
+        }
+    }
+
+    navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(handleError);
+
+    
+</script>
+
+</html>

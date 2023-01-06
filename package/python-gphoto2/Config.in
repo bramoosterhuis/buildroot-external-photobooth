@@ -1,0 +1,7 @@
+config BR2_PACKAGE_PYTHON_GPHOTO2
+	bool "python-gphoto2"
+	help
+	  python-gphoto2 is a comprehensive Python interface (or binding) to 
+	  libgphoto2. 
+
+	  https://github.com/jim-easterbrook/python-gphoto2

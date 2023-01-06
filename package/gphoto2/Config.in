@@ -1,0 +1,9 @@
+config BR2_PACKAGE_GPHOTO2
+    bool "gphoto2"
+    select BR2_PACKAGE_LIBGPHOTO2
+    select BR2_PACKAGE_POPT
+    help
+        The gphoto2 commandline tool for accessing and 
+        controlling digital cameras.
+
+        http://gphoto.org/proj/gphoto2/

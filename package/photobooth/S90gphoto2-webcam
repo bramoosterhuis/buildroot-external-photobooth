@@ -1,0 +1,47 @@
+#!/bin/sh
+#
+# Starts cog with the drm backend
+# Adds a loopback video device
+#
+
+start() {
+	printf 'Probing v4l2loopback: ' 
+	modprobe v4l2loopback exclusive_caps=1 card_label="GPhoto2 Webcam"
+	status=$?
+	if [ "$status" -eq 0 ]; then
+		echo "OK"
+	else
+		echo "FAIL"
+	fi
+	return "$status"
+}
+
+stop() {
+	printf 'Remove v4l2loopback: '
+	rmmod v4l2loopback
+	status=$?
+	if [ "$status" -eq 0 ]; then
+		echo "OK"
+	else
+		echo "FAIL"
+	fi
+
+	return "$status"
+}
+
+restart() {
+	stop
+	sleep 1
+	start
+}
+
+case "$1" in
+	start|stop|restart)
+		"$1";;
+	reload)
+		# Restart, since there is no true "reload" feature.
+		restart;;
+	*)
+		echo "Usage: $0 {start|stop|restart|reload}"
+		exit 1
+esac
